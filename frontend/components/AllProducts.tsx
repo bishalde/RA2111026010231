@@ -1,5 +1,4 @@
 'use client'
-
 import React, { useState } from 'react';
 import axios from 'axios';
 
@@ -7,6 +6,9 @@ interface Product {
   id: number;
   name: string;
 }
+
+const companies = ["AMZ", "FLP", "SNP", "MYN", "AZO"];
+const categories = ["Phone", "Computer", "TV", "Earphone", "Tablet", "Charger", "Mouse", "Keypad", "Bluetooth", "Pendrive", "Remote", "Speaker", "Headset", "Laptop", "PC"];
 
 export const AllProducts = () => {
   const [categoryName, setCategoryName] = useState('');
@@ -47,11 +49,21 @@ export const AllProducts = () => {
         <div>
           <label className="block mb-2">
             Category Name:
-            <input type="text" value={categoryName} onChange={(e) => setCategoryName(e.target.value)} className="border border-gray-300 rounded-md px-3 py-2 mt-1 w-full" />
+            <select value={categoryName} onChange={(e) => setCategoryName(e.target.value)} className="border border-gray-300 rounded-md px-3 py-2 mt-1 w-full">
+              <option value="">Select Category</option>
+              {categories.map((category, index) => (
+                <option key={index} value={category}>{category}</option>
+              ))}
+            </select>
           </label>
           <label className="block mb-2">
             Company Name:
-            <input type="text" value={companyName} onChange={(e) => setCompanyName(e.target.value)} className="border border-gray-300 rounded-md px-3 py-2 mt-1 w-full" />
+            <select value={companyName} onChange={(e) => setCompanyName(e.target.value)} className="border border-gray-300 rounded-md px-3 py-2 mt-1 w-full">
+              <option value="">Select Company</option>
+              {companies.map((company, index) => (
+                <option key={index} value={company}>{company}</option>
+              ))}
+            </select>
           </label>
           <label className="block mb-2">
             Top:
@@ -91,3 +103,5 @@ export const AllProducts = () => {
     </div>
   );
 };
+
+export default AllProducts;
