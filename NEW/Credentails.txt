@@ -1,0 +1,14 @@
+{
+    "companyName": "goMart",
+    "clientID": "1958f7b1-3629-44b7-a749-f46c1b40d25c",
+    "clientSecret": "emuHGDNdHfObhLLm",
+    "ownerName": "Bishal De",
+    "ownerEmail": "bb3477@srmist.edu.in",
+    "rollNo": "RA2111026010231"
+}
+
+{
+    "token_type": "Bearer",
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNYXBDbGFpbXMiOnsiZXhwIjoxNzEyMTUwMDczLCJpYXQiOjE3MTIxNDk3NzMsImlzcyI6IkFmZm9yZG1lZCIsImp0aSI6IjE5NThmN2IxLTM2MjktNDRiNy1hNzQ5LWY0NmMxYjQwZDI1YyIsInN1YiI6ImJiMzQ3N0Bzcm1pc3QuZWR1LmluIn0sImNvbXBhbnlOYW1lIjoiZ29NYXJ0IiwiY2xpZW50SUQiOiIxOTU4ZjdiMS0zNjI5LTQ0YjctYTc0OS1mNDZjMWI0MGQyNWMiLCJjbGllbnRTZWNyZXQiOiJlbXVIR0ROZEhmT2JoTExtIiwib3duZXJOYW1lIjoiQmlzaGFsIERlIiwib3duZXJFbWFpbCI6ImJiMzQ3N0Bzcm1pc3QuZWR1LmluIiwicm9sbE5vIjoiUkEyMTExMDI2MDEwMjMxIn0.dh_y_kV09nObDQJCJ5qJTGNXQYspXqstqUTSS5C-jxk",
+    "expires_in": 1712150073
+}
