@@ -13,6 +13,8 @@ interface Product {
 
 
 
+
+
 const companies = ["AMZ", "FLP", "SNP", "MYN", "AZO"];
 const categories = ["Phone", "Computer", "TV", "Earphone", "Tablet", "Charger", "Mouse", "Keypad", "Bluetooth", "Pendrive", "Remote", "Speaker", "Headset", "Laptop", "PC"];
 
@@ -30,7 +32,7 @@ export const AllProducts = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        let queryParams = {};
+        let queryParams: { [key: string]: string } = {}; 
         if (minPrice) queryParams['minPrice'] = minPrice;
         if (maxPrice) queryParams['maxPrice'] = maxPrice;
         if (sortBy) queryParams['sortBy'] = sortBy;
