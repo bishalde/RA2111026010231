@@ -1,5 +1,6 @@
 const axios = require("axios");
-const { v4: uuidv4 } = require('uuid');
+const Product = require("../models/ProductModel");
+const { v4: uuidv4 } = require("uuid");
 
 const topProducts = async (req, res) => {
   try {
@@ -7,7 +8,8 @@ const topProducts = async (req, res) => {
     const { categoryName, companyname } = req.params;
 
     // Extracting query parameters
-    const { top, minPrice, maxPrice, sortBy, sortOrder, page } = req.query;
+    const { top, minPrice, maxPrice, sortBy, sortOrder, page, limit } =
+      req.query;
 
     // Predfined companies
     const companies = ["AMZ", "FLP", "SNP", "MYN", "AZO"];
@@ -39,13 +41,13 @@ const topProducts = async (req, res) => {
 
     // getting Access Token
     const AccessRequest = await axios.post("http://20.244.56.144/test/auth", {
-      "companyName": "goMart",
-      "clientID": "8a694f73-3c06-40e0-b1ec-ce2b2ec718c5",
-      "clientSecret": "GeruIClGRjMurgWh",
-      "ownerName": "Bishal De",
-      "ownerEmail": "bb3477@srmist.edu.in",
-      "rollNo": "RA2111026010231"
-  });
+      companyName: "goMart",
+      clientID: "8a694f73-3c06-40e0-b1ec-ce2b2ec718c5",
+      clientSecret: "GeruIClGRjMurgWh",
+      ownerName: "Bishal De",
+      ownerEmail: "bb3477@srmist.edu.in",
+      rollNo: "RA2111026010231",
+    });
     var ACCESS = AccessRequest.data.access_token;
 
     // Fetching data from the URL
@@ -55,10 +57,19 @@ const topProducts = async (req, res) => {
       },
     });
 
-    const productsWithIds = response.data.map(product => ({
+    const productsWithIds = response.data.map((product) => ({
       ...product,
-      id: uuidv4() // Generate UUID for each product
+      id: uuidv4(), // Generate UUID for each product
     }));
+    
+    //Pagination 
+    const pageLimit = limit ? parseInt(limit) : 10;
+    const pageNumber = page ? parseInt(page) : 1;
+    const startIndex = (pageNumber - 1) * pageLimit;
+    const endIndex = pageNumber * pageLimit;
+    const paginatedProducts = productsWithIds.slice(startIndex, endIndex);
+
+    const savedProducts = await Product.insertMany(paginatedProducts);
 
     // Sending response
     res.status(200).json({
@@ -66,7 +77,12 @@ const topProducts = async (req, res) => {
       message: "Success",
       timestamp: new Date().toISOString(),
       status: 200,
-      data: productsWithIds,
+      data: savedProducts,
+      pagination: {
+        totalPages: Math.ceil(productsWithIds.length / pageLimit),
+        currentPage: pageNumber,
+        totalItems: productsWithIds.length
+      }
     });
   } catch (err) {
     // Error Handling

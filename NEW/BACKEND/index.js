@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 const axios = require('axios');
 const morgan = require('morgan')
 
@@ -12,7 +13,6 @@ const GetProducts = require('./routes/getProducts');
 
 
 const PORT = 8080
-const BACKEND_URL = `http://20.244.56.144/test`
 
 const app = express();
 app.use(cors())
@@ -31,6 +31,21 @@ app.get('/', (req, res) => {
 
 app.use('/api/getProducts/',GetProducts);
 
-app.listen(PORT || 3000, () => {
-  console.log(`SERVER : http://localhost:${PORT}`);
-})
+
+const connectToDB = async() =>{
+  try {
+      await mongoose.connect(`mongodb://localhost:27017/GoMart`,{
+      })
+      .then(
+          app.listen(PORT,()=>{
+              console.log(`SERVER : http://localhost:${PORT}`)
+          }
+      ))
+      .then(console.log('MongoDB Connected'))
+  } catch (error) {
+      console.log(error.message)
+      process.exit(1)
+  }
+}
+
+connectToDB()
