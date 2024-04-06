@@ -110,10 +110,12 @@ const AllProducts = () => {
   return (
     <>
       <section className="p-6">
-        <div className="p-4 h-[300px] rounded-md bg-slate-200 flex items-center justify-center gap-10 hover:cursor-pointer">
-          <h1 className="  text-2xl md:text-5xl">Outstanding Quality Of <br /> <span className="font-semibold">Products</span></h1>
-          <img className="h-[100px] md:h-[200px]" src="/banner-image.png" alt="" />
-        </div>
+        {
+          pageNumber === 1 ? (<><div className="p-4 h-[300px] rounded-md bg-slate-200 flex items-center justify-center gap-10 hover:cursor-pointer">
+            <h1 className="  text-2xl md:text-5xl">Outstanding Quality Of <br /> <span className="font-semibold">Products</span></h1>
+            <img className="h-[100px] md:h-[200px]" src="/banner-image.png" alt="" />
+          </div>  </>) : (<></>)
+        }
         <div className="mt-6">
           <h1 className=" text-xl font-medium px-2">Filter By </h1>
           <form>
@@ -149,9 +151,8 @@ const AllProducts = () => {
               </div>
 
               <div className="flex flex-col">
-
                 <label htmlFor="sortby">Sort By</label>
-                <select required className="text-xs md:text-lg w-[150px] md:w-[200px] px-2 py-1 border border-gray-400 rounded-md bg-white text-gray-900 focus:outline-none focus:border-blue-500"
+                <select className="text-xs md:text-lg w-[150px] md:w-[200px] px-2 py-1 border border-gray-400 rounded-md bg-white text-gray-900 focus:outline-none focus:border-blue-500"
                 >
                   <option value="">Select Sort Order</option>
                   <option value="asc">Ascending</option>
@@ -174,7 +175,7 @@ const AllProducts = () => {
               <div className="flex flex-col">
                 <label htmlFor="minPrice">Min Price</label>
                 <input
-                  required
+                  
                   type="number"
                   id="minPrice"
                   name="minPrice"
@@ -187,7 +188,7 @@ const AllProducts = () => {
               <div className="flex flex-col">
                 <label htmlFor="maxPrice">Max Price</label>
                 <input
-                  required
+                  
                   type="number"
                   id="maxPrice"
                   name="maxPrice"

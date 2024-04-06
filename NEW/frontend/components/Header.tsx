@@ -17,7 +17,9 @@ export const Header = () => {
           <img className='h-[28px] hover:cursor-pointer' src="icons8-user-50.png" alt="wishlist" />
           <div className='relative flex items-center gap-1 border border-gray-400 px-3 py-1 rounded-3xl hover:cursor-pointer hover:bg-green-600 hover:text-white hover:border-0'>
             <h1 className='absolute top-[-10px] right-[-10px] bg-black text-white text-xs px-2 py-1 rounded-[60%]'>2</h1>
+            <Link href={'/cart'}>
             <img className='h-[20px]' src="/icons8-cart-64.png" alt="cart" />
+            </Link>
             <h1 className=' text-lg'>Cart</h1>
           </div>
         </div>
